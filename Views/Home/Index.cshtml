@@ -1,0 +1,112 @@
+﻿@model List<Онлайн_билеты.Models.Tickets>
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <title>Авиабилеты</title>
+</head>
+
+<body>
+    
+
+    <h3>Список билетов</h3>
+
+
+<form method="get">
+    <div class="form-inline">
+
+       @*  Названия тегов DropDownList: devId и firmId
+        должны совпадать названиями параметров метода Index *@
+
+        <label class="control-label">Откуда: </label>
+        @Html.DropDownList("OtkudaId", ViewBag.Otkuda as SelectList,
+        htmlAttributes: new { @class = "form-control" })
+
+
+        <label class="control-label">Куда: </label>
+        @Html.DropDownList("KudaId", ViewBag.Kuda as SelectList,
+        htmlAttributes: new { @class = "form-control" })
+
+            <input type="submit" style="display:none" id="filterSubmit"
+               class="btn btn-primary" />
+        <br /> <br />
+    </div>
+</form> 
+<br />
+
+
+<table class="table ">
+    <tr>
+        <th><p>Id</p></th>
+        <th><p>Номер рейса</p></th>
+        <th><p>Откуда</p></th>
+        <th><p>Куда</p></th>
+        <th><p>Дата отправления</p></th>
+        <th><p>Цена</p></th>
+        <th><p>Кол-во</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Ticket as IEnumerable<Tickets>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Flight_number</p></td>
+            <td><p>@p.otkuda.Otkud</p></td>
+            <td><p>@p.kuda.Kud</p></td>
+                <td><p>@p.DateP</p></td>
+                <td><p>@p.Price</p></td>
+            <td><p>@p.Kol</p></td>
+                @* <td>
+                    <a asp-action="Edit" asp-controller="Home"
+                       asp-route-id="@p.Id">Изменить</a> |
+                    <a asp-action="Delete" asp-controller="Home"
+                       asp-route-id="@p.Id">Удалить</a>
+                </td> *@
+                <td><a href="/Home/Korzina/@p.Id">В корзину</a> </td>
+
+        </tr>
+    }
+</table>
+    <a href="/Home/ViewKorzina">Просмотр Корзины</a>
+</body>
+
+@section scripts{
+    <script>
+          // Активация раскрывающегося списка выбора типа устройства
+        const selectGenres = document.getElementById("OtkudaId");
+
+          selectGenres.onchange = e => {
+                document.getElementById('filterSubmit').click();
+        }
+
+
+        // Активация раскрывающегося списка выбора фирмы производителя
+        const selectCountries = document.getElementById("KudaId");
+
+        selectCountries.onchange = e => {
+              document.getElementById('filterSubmit').click();
+        }
+    </script>
+}
+<style>
+    .table td{
+        border: 1px solid black;
+    }
+    .table tr:hover td {
+        background: deepskyblue;
+    }
+    .table th {
+        border: 1px solid black;
+    }
+
+        .table tr:hover td:after {
+            border-top: 3px solid blue;
+            border-bottom: 3px solid blue;
+        }
+
+    .table tr:active td {
+        background: blue;
+    }
+</style>

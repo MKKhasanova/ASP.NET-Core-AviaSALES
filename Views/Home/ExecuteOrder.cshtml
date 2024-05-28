@@ -1,0 +1,116 @@
+﻿
+
+@{
+    ViewBag.Title = "ExecuteOrder";
+    decimal totalPrice = 0;
+}
+
+<h2>Корзина</h2>
+<table class="table">
+    <tr>
+        <th><p>Номер билета</p></th>
+        <th><p>Откуда</p></th>
+        <th><p>Куда</p></th>
+        <th><p>Дата отправления</p></th>
+        <th><p>Цена</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Korzinas as IEnumerable<Korzina>)
+    {
+        <tr>
+            <td><p>@p.Flight_number</p></td>
+            <td><p>@p.otkuda.Otkud</p></td>
+            <td><p>@p.kuda.Kud</p></td>
+            <td><p>@p.DateP</p></td>
+            <td><p>@p.Price</p></td>
+            <td><a href="/Home/Cancel/@p.Id">Удалить</a></td>
+
+        </tr>
+        totalPrice += p.Price;
+    }
+</table>
+<h2>
+    <p>Общая сумма: @totalPrice.ToString("C")</p>
+</h2>
+<h2>Клиенты</h2>
+<form method="get" action="ExecuteOrder">
+    <p class="form-group">
+        <label>Поиск клиента по ФИО</label>
+        @Html.TextBox("Name", "", new { id = "nameTextBox" })
+        <input type="submit" id="nameSearch" style="display:none" />
+    </p>
+
+</form>
+<form>
+    <table class="table">
+        <tr>
+            <th><p>ФИО</p></th>
+            <th><p>Возраст</p></th>
+            <th><p>Паспортные данные</p></th>
+            <th><p>Телефон</p></th>
+        </tr>
+
+
+        @foreach (var p in ViewBag.Clients as IEnumerable<Client>)
+        {
+            <tr>
+                <td><p>@p.Client_Name</p></td>
+                <td><p>@p.Age</p></td>
+                <td><p>@p.Passport</p></td>
+                <td><p>@p.Phone</p></td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Home"
+                       asp-route-id="@p.Id">Изменить</a> |
+                    <a asp-action="Delete" asp-controller="Home"
+                       asp-route-id="@p.Id">Удалить</a>
+                </td>
+                <td><a href="/Home/OrderComplete/@p.Id">Выбор клиента</a></td>
+            </tr>
+        }
+    </table>
+
+</form>
+<div>
+</div>
+
+
+    <a href="Korzina">Вернуться на Корзину</a>
+
+
+<style>
+    .table td {
+        border: 1px solid black;
+    }
+
+    .table tr:hover td {
+        background: deepskyblue;
+    }
+
+    .table th {
+        border: 1px solid black;
+    }
+
+
+
+    .table tr:hover td:after {
+        border-top: 3px solid blue;
+        border-bottom: 3px solid blue;
+    }
+
+    .table tr:active td {
+        background: blue;
+    }
+</style>
+@section scripts {
+    <script>
+        const nameTextBox = document.getElementById("nameTextBox");
+        nameTextBox.onchange = e => {
+            document.getElementById('nameSearch').click();
+        }
+    </script>
+}
+
+
+
+

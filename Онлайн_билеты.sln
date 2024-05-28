@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Онлайн_билеты", "Онлайн_билеты.csproj", "{520DC2C7-578F-425A-BC81-85C5D853FF2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{520DC2C7-578F-425A-BC81-85C5D853FF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520DC2C7-578F-425A-BC81-85C5D853FF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520DC2C7-578F-425A-BC81-85C5D853FF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520DC2C7-578F-425A-BC81-85C5D853FF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13A2E2A7-F61D-4BE6-8D72-5BF126BBA015}
+	EndGlobalSection
+EndGlobal

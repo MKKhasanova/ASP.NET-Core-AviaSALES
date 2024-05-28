@@ -1,0 +1,27 @@
+﻿@model Онлайн_билеты.Models.Check
+@{
+    ViewBag.Title = "OrderComplete";
+}
+
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>Дата заказа</p></th>
+        <th><p>Клиент</p></th>
+        <th><p>Баллы</p></th>
+        <th><p>Сумма</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Checks as IEnumerable<Check>)
+    {
+        <tr>
+            <td><p>@p.Flight_number</p></td>
+            <td><p>@p.Client_Name</p></td>
+            <td><p>@p.Data</p></td>
+            <td><p>@p.Price</p></td>
+            <td><a href="/Home/Cancel/@p.Id">Отмена</a></td>
+        </tr>
+    }
+</table>
+
+
